@@ -4,12 +4,14 @@ public class Node
 {
     public enum Status
     {
-        sucsess, failure, running
+        Success,
+        Failure,
+        Running
     }
 
     public string name;
-    public List<Node> children;
-    public int currentChildIndex;
+    public List<Node> children = new List<Node>();
+    public int currentChildIndex = 0;
 
     public Node(string name)
     {
@@ -23,6 +25,9 @@ public class Node
 
     public virtual Status Process()
     {
+        if (children.Count == 0)
+            return Status.Failure;
+
         return children[currentChildIndex].Process();
     }
 }
