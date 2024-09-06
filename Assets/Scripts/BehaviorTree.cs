@@ -11,11 +11,21 @@ public class BehaviorTree : MonoBehaviour
         rootNode = node;
     }
 
-    private void Update()
+    // Process the behavior tree
+    public Node.Status Process()
     {
         if (rootNode != null)
         {
-            rootNode.Process();
+            return rootNode.Process();
         }
+        return Node.Status.Failure; // Return failure if root node is null
     }
+
+    //private void Update()
+    //{
+    //    if (rootNode != null)
+    //    {
+    //        rootNode.Process();
+    //    }
+    //}
 }
